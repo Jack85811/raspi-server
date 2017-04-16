@@ -15,7 +15,7 @@ app.post('/switchon',function (req,res){
         prompt: 'raspberry',
         spawnOptions: { /* other options for spawn */ }
     };
-    var child = sudo(['-ls'+systemCode+ ' '+socketNumber+ ' ' + status], options);
+    var child = sudo(['-ls'], options);
     child.stdout.on('data', function (data) {
         console.log(data.toString());
     });
