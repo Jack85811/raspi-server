@@ -13,9 +13,13 @@ app.post('/switchon',function (req,res){
     var options = {
       name: 'Electron'
     };
-    sudo.exec('sudo raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, options, function(error, stdout, stderr) {});
+    sudo.exec('sudo home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, options, function(error, stdout, stderr) {});
     res.send("ok");
 
+});
+
+app.post('/get',function (req,res){
+    console.log('get works');
 });
 
 // Start server
