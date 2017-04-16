@@ -15,11 +15,11 @@ app.post('/switchon',function (req,res){
         prompt: 'raspberry',
         spawnOptions: { /* other options for spawn */ }
     };
-    var child = sudo(['sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status], options);
+    var child = sudo(['/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status], options);
     child.stdout.on('data', function (data) {
         console.log(data.toString());
     });
-    console.log('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
+    console.log('/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
 
 
 
