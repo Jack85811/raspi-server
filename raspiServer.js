@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var sudo = require('sudo-prompt');
+var sudo = require('sudo');
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 
 // JSON API
@@ -11,10 +11,18 @@ app.post('/switchon',function (req,res){
     var socketNumber = req.body.socketNumber;
     var status = req.body.status;
     var options = {
-      name: 'Electron'
+        cachePassword: true,
+        prompt: 'raspberry',
+        spawnOptions: { /* other options for spawn */ }
     };
-    sudo.exec('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, options, function(error, stdout, stderr) {});
+    var child = sudo(['sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status], options);
+    child.stdout.on('data', function (data) {
+        console.log(data.toString());
+    });
     console.log('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
+
+
+
     res.send("ok");
 
 });
