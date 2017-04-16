@@ -12,7 +12,7 @@ app.post('/switchon',function (req,res){
     var systemCode = req.body.systemCode;
     var socketNumber = req.body.socketNumber;
     var status = req.body.status;
-    child = exec("pwd", function (error, stdout, stderr) {
+    child = exec("sudo pwd", function (error, stdout, stderr) {
       sys.print('stdout: ' + stdout);
       sys.print('stderr: ' + stderr);
       if (error !== null) {
