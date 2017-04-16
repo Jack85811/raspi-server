@@ -13,8 +13,8 @@ app.post('/switchon',function (req,res){
     var options = {
       name: 'Electron'
     };
-    sudo.exec('sudo home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, options, function(error, stdout, stderr) {});
-    console.log('sudo home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
+    sudo.exec('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, options, function(error, stdout, stderr) {});
+    console.log('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
     res.send("ok");
 
 });
