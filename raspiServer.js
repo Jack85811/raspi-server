@@ -19,7 +19,7 @@ app.post('/switchon',function (req,res){
     child.stdout.on('data', function (data) {
         console.log(data.toString());
     });
-    console.log('/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
+    //console.log('/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
 
 
 
