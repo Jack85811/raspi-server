@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var sudo = require('sudo');
+var sys = require('sys')
+var exec = require('child_process').exec;
+var child;
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 
 // JSON API
@@ -10,14 +12,12 @@ app.post('/switchon',function (req,res){
     var systemCode = req.body.systemCode;
     var socketNumber = req.body.socketNumber;
     var status = req.body.status;
-    var options = {
-        cachePassword: true,
-        prompt: 'raspberry',
-        spawnOptions: { /* other options for spawn */ }
-    };
-    var child = sudo(['-ls'], options);
-    child.stdout.on('data', function (data) {
-        console.log(data.toString());
+    child = exec("pwd", function (error, stdout, stderr) {
+      sys.print('stdout: ' + stdout);
+      sys.print('stderr: ' + stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
     });
     //console.log('/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
 
