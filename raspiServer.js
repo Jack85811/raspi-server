@@ -14,13 +14,11 @@ app.post('/switchon',function (req,res){
       name: 'Electron'
     };
     sudo.exec('sudo home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, options, function(error, stdout, stderr) {});
+    console.log('sudo home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
     res.send("ok");
 
 });
 
-app.post('/get',function (req,res){
-    console.log('get works');
-});
 
 // Start server
 var port= 8081;
