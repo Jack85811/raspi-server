@@ -3,7 +3,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var sys = require('util')
 var exec = require('child_process').exec;
+var queue = require('express-queue');
 var child;
+app.use(queue({ activeLimit: 1 }));
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 
 
