@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 
 
 // JSON API
-app.post('/switchon',function (req,res){
+app.post('/switch',function (req,res){
     console.log(req.body);
     var systemCode = req.body.systemCode;
     var socketNumber = req.body.socketNumber;
@@ -29,8 +29,22 @@ app.post('/switchon',function (req,res){
       if (error !== null) {
         console.log('exec error: ' + error);
       }
-  
+
     });
+
+    app.post('/switchAll',function (req,res){
+        console.log(req.body);
+        var systemCode = req.body.systemCode;
+        var socketNumber = req.body.socketNumber;
+        var status = req.body.status;
+        child = exec('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, function (error, stdout, stderr) {
+          sys.print('stdout: ' + stdout);
+          sys.print('stderr: ' + stderr);
+          if (error !== null) {
+            console.log('exec error: ' + error);
+          }
+
+        });
     //console.log('/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
 
 
