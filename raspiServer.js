@@ -38,7 +38,7 @@ app.post('/switch',function (req,res){
 app.post('/switchallon',function (req,res){
     console.log(req.body);
     var status = 1;
-    var executedString;
+    var executedString= "";
     req.body.forEach( function (jsonPart){
         executedString+=jsonPart.systemCode + " "+ jsonPart.socketNumber + " ";
     });
