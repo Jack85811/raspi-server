@@ -29,6 +29,7 @@ app.post('/switchon',function (req,res){
       if (error !== null) {
         console.log('exec error: ' + error);
       }
+      wait(6000);
     });
     //console.log('/home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status);
 
