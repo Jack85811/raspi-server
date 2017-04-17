@@ -61,7 +61,7 @@ app.post('/switchalloff',function (req,res){
         executedString+=jsonPart.systemCode + " "+ jsonPart.socketNumber + " ";
     });
 
-    executeSudoSend(executeString + " " + status, res);
+    executeSudoSend(executedString + " " + status, res);
 });
 
 function executeSudoSend(string,res){
