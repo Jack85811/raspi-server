@@ -28,11 +28,11 @@ app.post('/switch',function (req,res){
       sys.print('stderr: ' + stderr);
       if (error !== null) {
         console.log('exec error: ' + error);
-        res.send(500);
+        res.sendStatus(500);
       }
 
     });
-    res.send(200);
+    res.sendStatus(200);
 
 });
 
