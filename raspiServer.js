@@ -35,21 +35,40 @@ app.post('/switch',function (req,res){
 
 });
 
-app.post('/switchall',function (req,res){
+app.post('/switchallon',function (req,res){
     console.log(req.body);
-    /*var systemCode = req.body.systemCode;
-    var socketNumber = req.body.socketNumber;
-    var status = req.body.status;
-    child = exec('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, function (error, stdout, stderr) {
+    var status = 1;
+    var executedString;
+    req.body.forEach( function (jsonPart){
+        executedString+=jsonPart.systemCode + " "+ jsonPart.socketNumber + " ";
+    });
+    child = exec('sudo /home/pi/raspberry-remote/send '+ executedString + status, function (error, stdout, stderr) {
       sys.print('stdout: ' + stdout);
       sys.print('stderr: ' + stderr);
       if (error !== null) {
         console.log('exec error: ' + error);
         res.sendStatus(500);
       }
-    });*/
+    });
     res.sendStatus(200);
+});
 
+app.post('/switchalloff',function (req,res){
+    console.log(req.body);
+    var status = 0;
+    var executedString;
+    req.body.forEach( function (jsonPart){
+        executedString+=jsonPart.systemCode + " "+ jsonPart.socketNumber + " ";
+    });
+    child = exec('sudo /home/pi/raspberry-remote/send '+ executedString + status, function (error, stdout, stderr) {
+      sys.print('stdout: ' + stdout);
+      sys.print('stderr: ' + stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+        res.sendStatus(500);
+      }
+    });
+    res.sendStatus(200);
 });
 
 
