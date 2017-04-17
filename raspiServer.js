@@ -23,15 +23,8 @@ app.post('/switch',function (req,res){
     var systemCode = req.body.systemCode;
     var socketNumber = req.body.socketNumber;
     var status = req.body.status;
-    child = exec('sudo /home/pi/raspberry-remote/send '+systemCode+ ' '+socketNumber+ ' ' + status, function (error, stdout, stderr) {
-      sys.print('stdout: ' + stdout);
-      sys.print('stderr: ' + stderr);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-        res.sendStatus(500);
-      }
-    });
-    res.sendStatus(200);
+    var executedString = systemCode + " " + socketNumber;
+    executeSudoSend(executedString + " " + status, res);
 
 });
 
@@ -42,15 +35,7 @@ app.post('/switchallon',function (req,res){
     req.body.forEach( function (jsonPart){
         executedString+=jsonPart.systemCode + " "+ jsonPart.socketNumber + " ";
     });
-    child = exec('sudo /home/pi/raspberry-remote/send '+ executedString + status, function (error, stdout, stderr) {
-      sys.print('stdout: ' + stdout);
-      sys.print('stderr: ' + stderr);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-        res.sendStatus(500);
-      }
-    });
-    res.sendStatus(200);
+    executeSudoSend(executedString + " " + status, res);
 });
 
 app.post('/switchalloff',function (req,res){
