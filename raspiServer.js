@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var sys = require('util')
+var sys = require('util');
 var exec = require('child_process').exec;
 var queue = require('express-queue');
 var child;
@@ -60,17 +60,22 @@ app.post('/switchalloff',function (req,res){
     req.body.forEach( function (jsonPart){
         executedString+=jsonPart.systemCode + " "+ jsonPart.socketNumber + " ";
     });
-    child = exec('sudo /home/pi/raspberry-remote/send '+ executedString + status, function (error, stdout, stderr) {
+
+    executeSudoSend(executeString + " " + status);
+});
+
+function executeSudoSend(string,res){
+    child = exec('sudo /home/pi/raspberry-remote/send '+ string, function (error, stdout, stderr) {
       sys.print('stdout: ' + stdout);
       sys.print('stderr: ' + stderr);
       if (error !== null) {
         console.log('exec error: ' + error);
         res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
       }
-    });
-    res.sendStatus(200);
-});
-
+  });
+};
 
 // Start server
 var port= 8081;
