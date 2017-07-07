@@ -18,7 +18,6 @@ var rpi433    = require('rpi-433'),
       pulseLength: 350            //Send the code with a 350 pulse length
     });
 var request = require('request');
-
 // Receive (data is like {code: xxx, pulseLength: xxx})
 rfSniffer.on('data', function (data) {
   console.log('Code received: '+data.code+' pulse length : '+data.pulseLength);
