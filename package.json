@@ -1,0 +1,24 @@
+{
+  "name": "raspi-socket-remote-server",
+  "version": "1.0.0",
+  "description": "A server that handels raspi requests",
+  "main": "raspiServer.js",
+  "dependencies": {
+    "request": "^2.81.0",
+    "rpi-433": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jack85811/raspi-socket-remote-server.git"
+  },
+  "author": "Jack Sliwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jack85811/raspi-socket-remote-server/issues"
+  },
+  "homepage": "https://github.com/Jack85811/raspi-socket-remote-server#readme"
+}
