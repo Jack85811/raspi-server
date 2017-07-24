@@ -5,7 +5,11 @@
   "main": "raspiServer.js",
   "dependencies": {
     "request": "^2.81.0",
-    "rpi-433": "^2.1.0"
+    "rpi-433": "^2.1.0",
+    "express": "4.15.3",
+    "body-parser": "*",
+    "child_process": "*",
+    "express-queue": "*"
   },
   "devDependencies": {},
   "scripts": {
